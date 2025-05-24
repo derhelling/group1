@@ -193,3 +193,46 @@ function finishExercise() {
     keyboardContainer.classList.remove('visible');
     clearKeyHighlights();
 }
+// Функция обновления графика прогресса
+function updateProgressChart() {
+    const labels = sessionStats.map((_, i) => `Попытка ${i + 1}`);
+    const data = sessionStats.map(stat => stat.cpm);
+    
+    progressChart.data.labels = labels;
+    progressChart.data.datasets[0].data = data;
+    progressChart.update();
+}
+
+// Функция для очистки подсветки клавиш
+function clearKeyHighlights() {
+    document.querySelectorAll('.key').forEach(key => {
+        key.classList.remove('active');
+    });
+}
+
+// Функция для подсветки клавиши
+function highlightKey(char) {
+    clearKeyHighlights();
+    let keyChar = char === ' ' ? 'space' : char;
+    // Handle special characters
+    const specialChars = {
+        '.': '.',
+        ',': ',',
+        '-': '-',
+        '=': '=',
+        '\\': '\\',
+        '`': '`'
+    };
+    if (specialChars[keyChar]) {
+        keyChar = specialChars[keyChar];
+    }
+    const keyElement = document.querySelector(`.key[data-char="${keyChar}"]`);
+    if (keyElement) {
+        keyElement.classList.add('active');
+        setTimeout(() => {
+            keyElement.classList.remove('active');
+        }, 300); // Animation duration
+    } else {
+        console.warn(`Key not found for character: ${char}`);
+    }
+}
