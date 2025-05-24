@@ -236,3 +236,49 @@ function highlightKey(char) {
         console.warn(`Key not found for character: ${char}`);
     }
 }
+
+// Инициализация приложения
+function init() {
+    // Установка начальной темы
+    setTheme(getTheme());
+
+    // Обработчик переключения темы
+    const toggleButton = document.getElementById('theme-toggle');
+    toggleButton.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        setTheme(newTheme);
+    });
+
+    // Создаем элементы выбора режима
+    const modeSelectContainer = document.getElementById('modeSelectContainer');
+    let modeSelectHTML = '<label for="modeSelect">Режим:</label><select id="modeSelect">';
+    
+    for (const mode in config.modes) {
+        modeSelectHTML += `<option value="${mode}">${config.modes[mode].name}</option>`;
+    }
+    
+    modeSelectHTML += '</select>';
+    modeSelectContainer.innerHTML = modeSelectHTML;
+    
+    // Инициализация графика
+    progressChart = new Chart(progressChartCtx, {
+        type: 'line',
+        data: {
+            labels: [],
+            datasets: [{
+                label: 'Символов в минуту',
+                data: [],
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    
