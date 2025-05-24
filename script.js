@@ -1,3 +1,4 @@
+// Конфигурация тренажера
 const config = {
     modes: {
         randomLetters: {
@@ -121,6 +122,7 @@ function startExercise() {
     // Показать клавиатуру
     keyboardContainer.classList.add('visible');
 }
+
 // Функция для отображения текста
 function displayText() {
     let html = '';
@@ -193,6 +195,7 @@ function finishExercise() {
     keyboardContainer.classList.remove('visible');
     clearKeyHighlights();
 }
+
 // Функция обновления графика прогресса
 function updateProgressChart() {
     const labels = sessionStats.map((_, i) => `Попытка ${i + 1}`);
@@ -281,7 +284,7 @@ function init() {
             }
         }
     });
-
+    
     // Обработчики событий
     document.getElementById('modeSelect').addEventListener('change', function(e) {
         config.currentMode = e.target.value;

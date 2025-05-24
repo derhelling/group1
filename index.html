@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru" data-theme="light">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,7 +14,7 @@
 			<!--меню-->
 			<h1>Клавиатурный тренажер</h1>
 
-			<div class="controls">
+			<div class="controls">   <!--кнопки -->
 				<div id="modeSelectContainer"></div>
         <button id="theme-toggle" aria-label="dark"><i class="fas fa-moon"></i> Тёмная тема</button>
 				<div class="input-area">
@@ -24,22 +24,88 @@
 				</div>
 			</div>
 
-			<div class="stats">
+			<div class="stats"> <!--Динамическая статистика-->
 				<div>Символов в минуту: <span id="cpm">0</span></div>
 				<div>Точность: <span id="accuracy">100</span>%</div>
 				<div>Время: <span id="time">0:00</span></div>
 			</div>
 
-			<div class="text-display" id="textDisplay">
+			<div class="text-display" id="textDisplay"> <!--дисплей-->
 				Выберите режим и нажмите "Начать"
 			</div>
 
-			<div class="progress-container">
+			<div class="progress-container"> <!--Дисплей чарта-->
 				<h2>Ваш прогресс</h2>
 				<canvas id="progressChart"></canvas>
 			</div>
 		</div>
-
+  <!--Клавиатура-->
+    <div class="keyboard-container" id="keyboardContainer"> 
+      <div class="keyboard">
+          <div class="key-row">
+              <div class="key" data-char="ё">ё</div>
+              <div class="key" data-char="1">1</div>
+              <div class="key" data-char="2">2</div>
+              <div class="key" data-char="3">3</div>
+              <div class="key" data-char="4">4</div>
+              <div class="key" data-char="5">5</div>
+              <div class="key" data-char="6">6</div>
+              <div class="key" data-char="7">7</div>
+              <div class="key" data-char="8">8</div>
+              <div class="key" data-char="9">9</div>
+              <div class="key" data-char="0">0</div>
+              <div class="key" data-char="-">-</div>
+              <div class="key" data-char="=">=</div>
+              <div class="key backspace" data-char="backspace">Backspace</div>
+          </div>
+          <div class="key-row">
+              <div class="key" data-char="й">й</div>
+              <div class="key" data-char="ц">ц</div>
+              <div class="key" data-char="у">у</div>
+              <div class="key" data-char="к">к</div>
+              <div class="key" data-char="е">е</div>
+              <div class="key" data-char="н">н</div>
+              <div class="key" data-char="г">г</div>
+              <div class="key" data-char="ш">ш</div>
+              <div class="key" data-char="щ">щ</div>
+              <div class="key" data-char="з">з</div>
+              <div class="key" data-char="х">х</div>
+              <div class="key" data-char="ъ">ъ</div>
+              <div class="key" data-char="\\">\</div>
+          </div>
+          <div class="key-row">
+              <div class="key" data-char="ф">ф</div>
+              <div class="key" data-char="ы">ы</div>
+              <div class="key" data-char="в">в</div>
+              <div class="key" data-char="а">а</div>
+              <div class="key" data-char="п">п</div>
+              <div class="key" data-char="р">р</div>
+              <div class="key" data-char="о">о</div>
+              <div class="key" data-char="л">л</div>
+              <div class="key" data-char="д">д</div>
+              <div class="key" data-char="ж">ж</div>
+              <div class="key" data-char="э">э</div>
+              <div class="key enter" data-char="enter">Enter</div>
+          </div>
+          <div class="key-row">
+              <div class="key shift" data-char="shift">Shift</div>
+              <div class="key" data-char="я">я</div>
+              <div class="key" data-char="ч">ч</div>
+              <div class="key" data-char="с">с</div>
+              <div class="key" data-char="м">м</div>
+              <div class="key" data-char="и">и</div>
+              <div class="key" data-char="т">т</div>
+              <div class="key" data-char="ь">ь</div>
+              <div class="key" data-char="б">б</div>
+              <div class="key" data-char="ю">ю</div>
+              <div class="key" data-char=".">.</div>
+              <div class="key shift" data-char="shift">Shift</div>
+          </div>
+          <div class="key-row">
+              <div class="key space" data-char="space">Пробел</div>
+          </div>
+      </div>
+  </div>
 		<script src="script.js"></script>
 		<!--Подключение JS-->
 	</body>
