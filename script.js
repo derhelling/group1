@@ -281,4 +281,47 @@ function init() {
             }
         }
     });
+
+    // Обработчики событий
+    document.getElementById('modeSelect').addEventListener('change', function(e) {
+        config.currentMode = e.target.value;
+    });
     
+    startBtn.addEventListener('click', startExercise);
+    resetBtn.addEventListener('click', resetExercise);
+    
+    userInput.addEventListener('input', (e) => {
+        const inputText = e.target.value;
+        totalTyped++;
+        
+        if (inputText[inputText.length - 1] === currentText[inputText.length - 1]) {
+            correctChars++;
+        }
+        
+        currentCharIndex = inputText.length;
+        displayText();
+        
+        // Подсветка клавиши
+        const lastChar = inputText[inputText.length - 1];
+        if (lastChar) {
+            highlightKey(lastChar);
+        }
+        
+        if (inputText.length === currentText.length) {
+            finishExercise();
+        }
+    });
+    
+    // Обработчик нажатия клавиш для backspace
+    userInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Backspace' && userInput.value.length > 0) {
+            const prevChar = userInput.value[userInput.value.length - 1];
+            highlightKey(prevChar);
+        } else if (e.key === 'Backspace') {
+            clearKeyHighlights();
+        }
+    });
+}
+
+// Запускаем приложение
+document.addEventListener('DOMContentLoaded', init);
