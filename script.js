@@ -121,3 +121,75 @@ function startExercise() {
     // Показать клавиатуру
     keyboardContainer.classList.add('visible');
 }
+// Функция для отображения текста
+function displayText() {
+    let html = '';
+    for (let i = 0; i < currentText.length; i++) {
+        let charClass = '';
+        if (i < currentCharIndex) {
+            charClass = userInput.value[i] === currentText[i] ? 'correct' : 'incorrect';
+        } else if (i === currentCharIndex) {
+            charClass = 'current-char';
+        }
+        html += `<span class="${charClass}">${currentText[i]}</span>`;
+    }
+    textDisplay.innerHTML = html;
+}
+
+// Функция для сброса упражнения
+function resetExercise() {
+    clearInterval(timerInterval);
+    userInput.disabled = true;
+    startBtn.disabled = false;
+    resetBtn.disabled = true;
+    userInput.value = '';
+    textDisplay.textContent = 'Выберите режим и нажмите "Начать"';
+    updateStats(0, 100);
+    timeDisplay.textContent = '0:00';
+    keyboardContainer.classList.remove('visible');
+    clearKeyHighlights();
+}
+
+// Функция обновления таймера
+function updateTimer() {
+    const currentTime = new Date();
+    const elapsedTime = Math.floor((currentTime - startTime) / 1000);
+    const minutes = Math.floor(elapsedTime / 60);
+    const seconds = elapsedTime % 60;
+    timeDisplay.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    
+    if (elapsedTime > 0) {
+        const cpm = Math.floor((correctChars / elapsedTime) * 60);
+        const accuracy = totalTyped > 0 ? Math.floor((correctChars / totalTyped) * 100) : 100;
+        updateStats(cpm, accuracy);
+    }
+}
+
+// Функция обновления статистики
+function updateStats(cpm, accuracy) {
+    cpmDisplay.textContent = cpm;
+    accuracyDisplay.textContent = accuracy;
+}
+
+// Функция завершения упражнения
+function finishExercise() {
+    clearInterval(timerInterval);
+    userInput.disabled = true;
+    
+    const endTime = new Date();
+    const elapsedTime = (endTime - startTime) / 1000;
+    const cpm = Math.floor((correctChars / elapsedTime) * 60);
+    const accuracy = Math.floor((correctChars / totalTyped) * 100);
+    
+    sessionStats.push({
+        cpm: cpm,
+        accuracy: accuracy,
+        date: new Date()
+    });
+    
+    updateProgressChart();
+    
+    textDisplay.innerHTML += '<p style="color: var(--success-green);">Упражнение завершено!</p>';
+    keyboardContainer.classList.remove('visible');
+    clearKeyHighlights();
+}
