@@ -7,6 +7,35 @@
 		<link rel="stylesheet" href="styles.css" />
 	</head>
 	<body>
+		<div class="container">
+			<!--меню-->
+			<h1>Клавиатурный тренажер</h1>
+
+			<div class="controls">
+				<div id="modeSelectContainer"></div>
+				<div class="input-area">
+					<input type="text" id="userInput" disabled />
+					<button id="startBtn">Начать</button>
+					<button id="resetBtn" disabled>Сброс</button>
+				</div>
+			</div>
+
+			<div class="stats">
+				<div>Символов в минуту: <span id="cpm">0</span></div>
+				<div>Точность: <span id="accuracy">100</span>%</div>
+				<div>Время: <span id="time">0:00</span></div>
+			</div>
+
+			<div class="text-display" id="textDisplay">
+				Выберите режим и нажмите "Начать"
+			</div>
+
+			<div class="progress-container">
+				<h2>Ваш прогресс</h2>
+				<canvas id="progressChart"></canvas>
+			</div>
+		</div>
+
 		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 		<!--Подключение чарта-->
 		<script src="script.js"></script>
