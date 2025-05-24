@@ -68,3 +68,56 @@ let totalTyped = 0;
 let sessionStats = [];
 let currentCharIndex = 0;
 let progressChart;
+
+// Функция для установки темы
+function setTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    const toggleButton = document.getElementById('theme-toggle');
+    if (theme === 'dark') {
+        toggleButton.innerHTML = '<i class="fas fa-sun"></i> Светлая тема';
+        toggleButton.setAttribute('aria-label', 'light');
+    } else {
+        toggleButton.innerHTML = '<i class="fas fa-moon"></i> Тёмная тема';
+        toggleButton.setAttribute('aria-label', 'dark');
+    }
+    localStorage.setItem('theme', theme);
+}
+
+// Функция для получения текущей темы
+function getTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        return savedTheme;
+    }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+
+// Функция для начала упражнения
+function startExercise() {
+    const mode = config.modes[config.currentMode];
+    
+    if (config.currentMode === 'randomSentences') {
+        currentText = mode.generate();
+    } else {
+        currentText = mode.generate(config.length);
+    }
+    
+    displayText();
+    userInput.disabled = false;
+    userInput.value = '';
+    userInput.focus();
+    
+    startBtn.disabled = true;
+    resetBtn.disabled = false;
+    
+    correctChars = 0;
+    totalTyped = 0;
+    currentCharIndex = 0;
+    updateStats(0, 100);
+    
+    startTime = new Date();
+    timerInterval = setInterval(updateTimer, 1000);
+    
+    // Показать клавиатуру
+    keyboardContainer.classList.add('visible');
+}
