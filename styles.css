@@ -233,3 +233,57 @@ canvas {
     gap: 8px;
     justify-content: center;
 }
+
+.key {
+    position: relative;
+    background: var(--key-gradient);
+    color: var(--text-dark);
+    border: 1px solid var(--medium-gray);
+    border-radius: 6px;
+    padding: 10px;
+    min-width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    cursor: default;
+    user-select: none;
+    box-shadow: var(--key-shadow);
+    transform: translateY(0) rotateX(5deg); /* Slight 3D tilt */
+    transition: box-shadow 0.3s, transform 0.1s;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.key:hover {
+    transform: translateY(-1px) rotateX(3deg);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25), 0 3px 5px rgba(0, 0, 0, 0.15);
+}
+
+.key.active {
+    animation: highlight 0.3s ease-in-out;
+}
+
+@keyframes highlight {
+    0% { box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2), 0 0 12px rgba(30, 144, 255, 0); }
+    50% { box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2), 0 0 20px rgba(30, 144, 255, 1); }
+    100% { box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2), 0 0 12px rgba(30, 144, 255, 0); }
+}
+
+.key.space {
+    flex-grow: 1;
+    min-width: 300px;
+    height: 40px;
+    line-height: 40px;
+}
+
+.key.wide {
+    min-width: 80px;
+}
+
+.key.backspace {
+    min-width: 120px;
+}
+
+.key.enter {
+    min-width: 100px;
+}
