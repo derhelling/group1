@@ -287,3 +287,60 @@ canvas {
 .key.enter {
     min-width: 100px;
 }
+
+.key.shift {
+    min-width: 110px;
+}
+
+.key-row:nth-child(2) {
+    margin-left: 40px;
+}
+
+.key-row:nth-child(3) {
+    margin-left: 60px;
+}
+
+.key-row:nth-child(4) {
+    margin-left: 80px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .key {
+        min-width: 30px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 14px;
+    }
+
+    .key.space {
+        min-width: 200px;
+    }
+
+    .key.wide {
+        min-width: 60px;
+    }
+
+    .key.backspace {
+        min-width: 80px;
+    }
+
+    .key.enter {
+        min-width: 70px;
+    }
+
+    .key.shift {
+        min-width: 80px;
+    }
+}
